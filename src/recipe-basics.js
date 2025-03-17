@@ -2,7 +2,6 @@
 // Core recipe creation and modification functions
 
 /* c8 ignore start */
-// Set to true to see console examples when running this file directly
 const SHOW_EXAMPLES = false;
 /* c8 ignore stop */
 
@@ -30,7 +29,15 @@ function createRecipe(name, cookingTime, servings = 4) {
   // - steps: an empty array to store cooking steps
   // - dateCreated: today's date (use new Date().toLocaleDateString())
 
-  // YOUR CODE HERE
+  return {
+    id: Date.now(),
+    name,
+    cookingTime,
+    servings,
+    ingredients: [],
+    steps: [],
+    dateCreated: new Date().toLocaleDateString(),
+  };
 }
 
 /**
@@ -53,7 +60,8 @@ const addIngredient = function (recipe, name, amount, unit) {
   // Add it to the recipe's ingredients array
   // Return the modified recipe
 
-  // YOUR CODE HERE
+  recipe.ingredients.push({ name, amount, unit });
+  return recipe;
 };
 
 /**
@@ -71,7 +79,8 @@ function addStep(recipe, instruction) {
   // Add the instruction to the recipe's steps array
   // Return the modified recipe
 
-  // YOUR CODE HERE
+  recipe.steps.push(instruction);
+  return recipe;
 }
 
 /**
@@ -90,25 +99,24 @@ function removeStep(recipe, stepIndex) {
   // If valid, remove the step at that index using splice()
   // Return the modified recipe
 
-  // YOUR CODE HERE
+  if (stepIndex >= 0 && stepIndex < recipe.steps.length) {
+    recipe.steps.splice(stepIndex, 1);
+  }
+  return recipe;
 }
 
 /* c8 ignore start */
-// Example code - only runs when SHOW_EXAMPLES is true
 if (SHOW_EXAMPLES) {
   console.log("=== Recipe Basics Examples ===");
 
-  // Create a recipe
   const pancakes = createRecipe('Pancakes', 20, 6);
   console.log("Created recipe:", pancakes);
 
-  // Add ingredients
   addIngredient(pancakes, 'Flour', 2, 'cups');
   addIngredient(pancakes, 'Milk', 1.5, 'cups');
   addIngredient(pancakes, 'Eggs', 2, 'large');
   console.log("Recipe with ingredients:", pancakes.ingredients);
 
-  // Add steps
   addStep(pancakes, 'Mix dry ingredients in a bowl');
   addStep(pancakes, 'Add wet ingredients and stir until smooth');
   addStep(pancakes, 'Heat griddle and pour batter to form pancakes');
@@ -116,7 +124,6 @@ if (SHOW_EXAMPLES) {
   addStep(pancakes, 'Cook until golden brown');
   console.log("Recipe with steps:", pancakes.steps);
 
-  // Remove a step
   removeStep(pancakes, 2);
   console.log("Recipe after removing step 3:", pancakes.steps);
 }

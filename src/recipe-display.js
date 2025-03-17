@@ -19,13 +19,7 @@ const SHOW_EXAMPLES = false;
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#Function_body |MDN: Arrow functions with implicit return}
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators |MDN: Arithmetic operators}
  */
-const timePerServing = recipe => {
-  // CHALLENGE 9: Calculate time per serving
-  // Create a concise arrow function (with implicit return)
-  // that divides the recipe's cookingTime by its servings
-
-  // YOUR CODE HERE
-};
+const timePerServing = recipe => recipe.cookingTime / recipe.servings;
 
 /**
  * Gets the numbered list of steps (demonstrates arrow function with block body)
@@ -38,13 +32,8 @@ const timePerServing = recipe => {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals |MDN: Template literals}
  */
 const getStepsList = (recipe) => {
-  // CHALLENGE 10: Format the steps as a numbered list
-  // Check if the recipe has any steps - if empty, return "No steps added yet"
-  // Otherwise, create a string with each step numbered (1. Step one, 2. Step two, etc.)
-  // Add a newline character (\n) after each step
-  // Return the formatted string
-
-  // YOUR CODE HERE
+  if (!recipe.steps.length) return "No steps added yet";
+  return recipe.steps.map((step, index) => `${index + 1}. ${step}`).join('\n');
 };
 
 /**
@@ -58,14 +47,8 @@ const getStepsList = (recipe) => {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length |MDN: Array.length property}
  */
 const getIngredientsList = (recipe) => {
-  // CHALLENGE 11: Format the ingredients as a list
-  // Check if the recipe has any ingredients - if empty, return "No ingredients added yet"
-  // Otherwise, create a string with each ingredient formatted as:
-  // "- 2 cups of Flour" (where 2 is amount, cups is unit, and Flour is name)
-  // Add a newline character (\n) after each ingredient
-  // Return the formatted string
-
-  // YOUR CODE HERE
+  if (!recipe.ingredients.length) return "No ingredients added yet";
+  return recipe.ingredients.map(ing => `- ${ing.amount} ${ing.unit} of ${ing.name}`).join('\n');
 };
 
 /**
@@ -79,14 +62,7 @@ const getIngredientsList = (recipe) => {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim |MDN: String.trim() method}
  */
 function formatRecipe(recipe) {
-  // CHALLENGE 12: Format the complete recipe as a string
-  // Use the helper functions (timePerServing, getIngredientsList, getStepsList)
-  // Include the recipe name, servings, cooking time, time per serving
-  // Include sections for ingredients and steps
-  // Use template literals (backticks) for multi-line formatting
-  // Return the complete formatted string
-
-  // YOUR CODE HERE
+  return `Recipe: ${recipe.name}\nServings: ${recipe.servings} (for ${recipe.servings} people)\nCooking Time: ${recipe.cookingTime} minutes\nTime per Serving: ${timePerServing(recipe).toFixed(2)} minutes\n\nIngredients:\n${getIngredientsList(recipe)}\n\nSteps:\n${getStepsList(recipe)}`.trim();
 }
 
 /* c8 ignore start */

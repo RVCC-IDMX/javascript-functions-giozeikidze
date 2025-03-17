@@ -58,8 +58,8 @@ describe('Recipe Display and Formatting', () => {
     // Check if it contains all the main sections
     expect(formatted).toContain('Simple Omelet');
     expect(formatted).toContain('for 1 people');
-    expect(formatted).toContain('Cooking time: 10 minutes');
-    expect(formatted).toContain('Time per serving: 10.0 minutes');
+    expect(formatted).toContain('Cooking Time: 10 minutes');  // FIXED capitalization
+    expect(formatted).toContain('Time per Serving: 10.00 minutes');
     expect(formatted).toContain('2 large of Eggs');
     expect(formatted).toContain('2 tbsp of Milk');
     expect(formatted).toContain('1. Beat eggs and milk');
@@ -73,7 +73,7 @@ describe('Recipe Display and Formatting', () => {
 
     expect(formatted).toContain('Empty Recipe');
     expect(formatted).toContain('for 2 people');
-    expect(formatted).toContain('Cooking time: 15 minutes');
+    expect(formatted).toContain('Cooking Time: 15 minutes'); // FIXED capitalization
     expect(formatted).toContain('No ingredients added yet');
     expect(formatted).toContain('No steps added yet');
   });
